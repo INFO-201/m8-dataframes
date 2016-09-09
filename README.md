@@ -5,7 +5,6 @@ In this module, we'll begin working with data frame objects, which are the prima
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
 **Contents**
 
 - [Resources](#resources)
@@ -13,6 +12,7 @@ In this module, we'll begin working with data frame objects, which are the prima
 - [Data Frames](#data-frames)
   - [Creating Data Frames](#creating-data-frames)
   - [Describing Dataframes](#describing-dataframes)
+  - [Accessing Data in Data Frames](#accessing-data-in-data-frames)
 - [Reading CSV Data](#reading-csv-data)
   - [Factor Variables](#factor-variables)
 
@@ -23,6 +23,7 @@ In this module, we'll begin working with data frame objects, which are the prima
 - [List Basics - R Bloggers](https://www.r-bloggers.com/basics-of-lists/)
 - [Single v.s. double brackets - StackOverflow](http://stackoverflow.com/questions/1169456/in-r-what-is-the-difference-between-the-and-notations-for-accessing-the)
 - [Factor Variables -  UCLA](http://www.ats.ucla.edu/stat/r/modules/factor_variables.htm)
+- [Data Frame Indexing - R Tutor](http://www.r-tutor.com/r-introduction/data-frame/data-frame-row-slice)
 
 ## Lists
 Before we learn about data frames, we need to understand a bit more about the **list** variable type. This is because data frames are actually a list object with class `data.frame`, which gives them special properties. Similarly to a vector, a list is a collection of elements. However, you can store **elements of different types** in a list. A list is easily constructed by passing elements as **arguments** to the `list` function:
@@ -60,7 +61,7 @@ name <- person1$name  # `$` notation
 name <- person1[['name']]  # using double brackets and element name
 ```
 
-Both of these approaches are more clear, enhancing code readability (and writability, for that matter).
+Both of these approaches are more clear, enhancing code readability (and writability, for that matter). For practice working with lists, see [exercise-1](exercise-1).
 
 ## Data Frames
 As stated above, data frames are really just lists with some additional properties that make them well suited for working with data. More specifically, data frames are lists in which each element is a **vector of the same length**. To relate this to the familiar row/column layout of a 2-dimensional table, each _vector_ in your data frame is a _column_ of your table. For example, consider the following table of weights and heights:
@@ -110,6 +111,22 @@ Here are a few ways in which you can start to explore you data frame elements:
 | `tail(my.data.frame)`       | Prints the last subset of rows of the data frame       |
 | `View(my.data.frame)`       | Opens up the RStudio data frame viewer (only in RStudio)|
 
+### Accessing Data in Data Frames
+There are a variety of approaches for retrieving desired information from within data frames. While we'll begin to use other R packages for data frame manipulation, it's crucial to understand the built in approaches for accessing specific cells within a data frame.
+
+The section above already covered methods for retrieving data frame columns using the double-bracket (`data[['col.name']]`) and dollar sign (`data$col.name`) methods. Below is a table of additional methods for retrieving individual cells, or rows from a data frame.
+
+| Syntax         |    Example     |    Result      |
+| :------------- | :------------- | :------------- |
+| `data[row.num, col.num]` | `data[2,3]` | Retrieve element in the second row, third column |
+| `data[row.num, col.name]` | `data[2,'height']` | Retrieve second element in the `height` column |
+| `data[row.name, col.name]` | `data['steve','height']` | Retrieve the `height` of row named `steve`|
+| `data[row.num, ]` | `data[2,]`                 | Retrieve all columns and only the second row |
+| `data[row.nums, ]` | `data[2:4,]`                 | Retrieve all columns and the second through fourth rows |
+| `data[, col.name]`| `data[,'height']`  | Retrieve all rows and only the `height` column |
+
+For practice retrieving information and manipulating data frames, see [exercise-2](exercise-2) and [exercise-3](exercise-3).
+
 ## Reading CSV Data
 While R is equipped to ingest a variety of different forms of data, in this module we'll focus on reading in tabular data in **comma separated value** (csv) format. Most spreadsheet programs like Microsoft Excel, Numbers, or Google Sheets are simply interfaces for formatting and interacting with data that is saved in a format like `.csv` files. These programs easily import and export `.csv` files, however `.csv` files are unable to save the formatting done in those programs (the files only store the data, separated by commas).
 
@@ -147,3 +164,5 @@ All of this is to say, when you use the `read.csv` function, it will **interpret
 # Read in data file, making sure character variables are not factors
 my.data <- read.csv('file_name.csv', stringsAsFactors = FALSE)
 ```
+
+For practice reading and working with data, see [exercise-4](exercise-4) and [exercise-5](exercise-5).
