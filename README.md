@@ -103,7 +103,7 @@ Here are a few ways in which you can start to explore you data frame elements:
 | Function | Result |
 | :------------- | :------------- |
 | `nrow(my.data.frame)`       | Number of rows in the data frame       |
-| `ncol(my.data.frame)`       | Number of columsn in the data frame       |
+| `ncol(my.data.frame)`       | Number of columns in the data frame       |
 | `dim(my.data.frame)`        | Dimensions (rows, columns) in the data frame       |
 | `colnames(my.data.frame)`   | Column names of the data frame |
 | `rownames(my.data.frame)`   | Row names of the data frame|
