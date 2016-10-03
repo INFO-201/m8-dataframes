@@ -1,49 +1,37 @@
-# Read in the female baby names csv file into a variable called `female.names`
-female.names <- read.csv('data/female_names.csv')
+# Exercise 4: Gates Foundation Educational Grants
 
-# Create a vector `year` as the year column of the dataset
-year <- female.names$year
+# Read data into a variable called "grants" using the "read.csv" function
+grants <- read.csv('data/gates_money.csv')
 
-# Create a vector `name` as the name column of the datset
-# As in the last exercise, you'll need to convert this column to a vector
-name <- as.vector(female.names$name)
+# Use the View function to look at your data
+View(grants)
 
-# Create a vector `prop` as the proportion column of the dataset
-prop <- female.names$prop
+# Create a variable "spending" as the "total.amount" column of the dataset
+spending <- grants$total_amount
 
-# Create a vector `names.2013` as your name vector where your year vector is 2013
-names.2013 <- name[year == 2013]
+# Confirm that your "spending" variable is a vector using the "is.vector" function
+is.vector(spending)
 
-# Create a vector `prop.2013` as the your prop vector where your year vecctor is 2013
-proportion.2013 <- prop[year==2013]
+# Create a variable "org" as the "organization" column of the dataset.
+# Unfortunately, it will not be a vector by default, so you must transform it using the as.vector function
+org <- as.vector(grants$organization)
 
-# What was the most popular female name in 2013?
-most.pop <- names.2013[proportion.2013 == max(proportion.2013)]
+### Now you can ask some more interesting questions about the dataset.  Store your answers in variables ###
 
-# Write a funciton `most.popular` that takes in a value `my.year`, and returns
-# a sentence stating the most popular name in that year. Note how you had to make intermediary variables above.
-MostPopular <- function(my.year) {
-  year.tmp <- year[year == my.year]
-  names.tmp <- name[year == my.year]
-  prop.tmp <- prop[year==my.year]
-  most.pop <- names.tmp[prop.tmp == max(prop.tmp[year.tmp == my.year])]
-  return(paste('The most popular baby name in', my.year, 'was', most.pop))
-}
+# What was the mean grant value?
+mean.spending <- mean(spending)
 
-# What was the most popular female name in 1994?
-most.pop.1994 <- MostPopular(1994)
+# What was the dollar amount of the largest grant?
+highest.amount <- max(spending)
 
+# What was the dollar amount of the smallest grant?
+lowest.amount <- min(spending)
 
-### Bonus ###
+# Which organization received the largest grant?
+largest.recipient <- org[spending == highest.amount]
 
-# Write a function `how.popular` that takes in a name and a year, and returns
-# a sentence with how popular that name was in that year
-HowPopular <- function(my.name, my.year) {
-  names.tmp <- name[year == my.year]
-  prop.tmp <- prop[year==my.year]
-  popular <- round(prop.tmp[names.tmp == my.name], 4)*100
-  return(paste('The proportion of people named', my.name, 'in', my.year, 'was', popular))
-}
+# Which organization received the smallest grant?
+smallest.recipient <- org[spending == lowest.amount]
 
-# How popular was the name 'Laura' in 1995
-HowPopular('Laura', 1995)
+# How many grants were awarded in 2010?s
+length(spending[grants$start_year == 2010])
