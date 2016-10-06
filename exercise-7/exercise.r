@@ -20,7 +20,7 @@ combined.yards <- passing.yards + rushing.yards
 # What is the score of the game where the Huskies had the most combined yards?
 score.with.most.yards <- husky.scores[combined.yards == max(combined.yards)]
 
-# Write a function `mostYardsScore` that takes in a dataframe parameter `games` and returns a descriptive sentence
+# Write a function `MostYardsScore` that takes in a dataframe parameter `games` and returns a descriptive sentence
 # about the game that was played that had the most yards scored in it.
 # Take note of the steps from above including the opposing team, score, and date the game was played
 MostYardsScore <- function(games) {
