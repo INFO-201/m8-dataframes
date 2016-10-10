@@ -1,3 +1,5 @@
+# Exercise 6: Popular Baby Names Over Time
+
 # Read in the female baby names csv file into a variable called `female.names`
 female.names <- read.csv('data/female_names.csv')
 
